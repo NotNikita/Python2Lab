@@ -1,3 +1,6 @@
+import json
+
+
 def to_json(data):
 
     if (type(data) == dict):
@@ -28,18 +31,18 @@ def to_json(data):
         return str(data)
     elif (type(data) == float):
         return str(data)
-    elif (type(data) == True):
+    elif (data == True):
         return "true"
-    elif (type(data) == False):
+    elif (data == False):
         return "false"
-    elif (type(data) == None):
+    elif (data == None):
         return "null"
 
 
 def Main():
 
     print("\nChecking dictionary:")
-    print(to_json({"name": "Viktor", "age": 30, "sex" : "cool_guy"}))
+    print(to_json({"name": "Viktor", "age": 30}))
     print(json.dumps({"name": "Viktor", "age": 30, "sex" : "cool_guy"}))
 
     print("\nChecking tuple:")
