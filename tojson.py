@@ -1,6 +1,3 @@
-import json
-
-
 def to_json(data):
 
     if (type(data) == dict):
