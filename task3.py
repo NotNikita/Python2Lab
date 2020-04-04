@@ -32,11 +32,13 @@ class Vector:
     def equality(self, vect2): # сравнение на равентсво
         if self.value == vect2.value:
             print("These 2 vectors are equal")
+            return True
         else:
             "These 2 vectors are NOT equal"
+            return False
 
     def length(self): # получение длинны
-        out = 0
+        out = 0.0
         for i in range(len(self.value)):
             out += math.pow(self.value[i], 2)
         return math.sqrt(out)
@@ -49,12 +51,17 @@ class Vector:
         return out_str + ')'
 
     def get_elem(self, num): # получение элемента по индексу
-        print(num," element in vector is", self.value[num])
+        elem = self.value[num]
+        print(num," element in vector is", elem)
+        return elem
+
+    def get_arr(self):
+        return self.value
 
 
 p1 = Vector([2, -4, 8, 3])
 p_new = Vector([-3, 1, -4, 0])
 
-p1.addition(p_new)
+p1.subtraction(p_new)
 print(p1)
 p1.get_elem(2)

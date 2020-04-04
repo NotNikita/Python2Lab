@@ -3,8 +3,6 @@ import random
 
 def cached(function):
     memo = {}  # like memory
-    out_value = 0
-    found = 0
 
     def wrapper(*args):
         if args in memo:
