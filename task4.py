@@ -4,32 +4,41 @@ import random
 def cached(function):
     memo = {}  # like memory
 
-    def wrapper(*args):
-        if args in memo:
-            return memo[args]
-        else:
-            out_value = function(*args)
-            memo[args] = out_value
-            return out_value
+    def wrapper(*args, **kwargs):
+        out_arr = {} # output dictionary
+
+        for num in args: # for each arg in *args
+            if num in memo:
+                    out_arr[num] = memo[num]
+            else:
+                    value_for_num = function(num)
+                    out_arr[num] = value_for_num
+                    memo[num] = value_for_num
+
+        for word in kwargs.keys():
+            if word in memo:
+                out_arr[word] = memo[word]
+            else:
+                value_for_num = kwargs[word] # how to get second value??
+                out_arr[word] = value_for_num
+                memo[word] = value_for_num
+        return out_arr
 
     return wrapper
 
 
 @cached
-def f(x):
-    return random.randint(1, 100) * x
+def func(arg):
+    return random.randint(1, 100) * arg
 
 
-a = f(1)
-b = f(1)
-if a == b:
-    print("They are equal")
-else:
-    print("NOT equal: a=", a, "   b=", b)
 
-print("\nSECOND TRY\n")
-b = f(2)
-if a == b:
-    print("They are equal")
-else:
-    print("NOT equal: a=", a, "   b=", b)
+print(func(1,2,3, Hi = 100, Me = 200))  # позиционные аргументы
+print(func(1,2))
+print(func('Hi'))
+
+#print(dic.items()) # dict_items([('name', 'Nikita'), ('age', 19)])
+#print(dic['name']) # Nikita
+#print(dic.keys())  # dict_keys(['name', 'age'])
+#for wrd in dic.keys(): # Nikita , 19
+#    print(dic[wrd])
