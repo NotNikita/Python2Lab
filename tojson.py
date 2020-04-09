@@ -1,44 +1,49 @@
 import json
-import coverage
 
 
 def to_json(data):
-    if (type(data) == dict):
+    if isinstance(data,dict):
         out_str = "{"
         for key in data.keys():
-            out_str += '"%s": %s, ' % (key, to_json(data[key]))
+            #out_str += '"%s": %s, ' % (key, to_json(data[key]))
+            out_str += '"{}": {}, '.format(key, to_json(data[key]))
 
         out_str = out_str[:len(out_str) - 2]
         return out_str + "}"
 
-    elif (type(data) == list):
+    elif isinstance(data,list):
         some_str = "["
         for element in data:
-            some_str += ', "%s"' % element
+            some_str += ', "{}"'.format(element)
         some_str += "]"
         some_str = "[" + some_str[3:]
         return some_str
-    elif (type(data) == tuple):
+
+    elif isinstance(data,tuple):
         some_str = "["
         for element in data:
-            some_str += ', "%s"' % element
+            some_str += ', "{}"'.format(element)
         some_str += "]"
         some_str = "[" + some_str[3:]
         return some_str
-    elif (type(data) == str):
-        return '"%s"' % data
-    elif (type(data) == int):
+
+    elif isinstance(data,list):
+        return '"{}"'.format(data)
+    elif isinstance(data,(float,int)):
         return str(data)
-    elif (type(data) == float):
-        return str(data)
-    elif (data == True):
+    elif isinstance(data,str):
+        return '"{}"'.format(str(data))
+
+    elif isinstance(data,bool):
+        return data
+    elif data == True:
         return "true"
-    elif (data == False):
+    elif data== False:
         return "false"
-    elif (data == None):
+    elif data== None:
         return "null"
     else:
-        return "incorrect input"
+        raise ValueError("Incorrect Input")
 
 
 def Main():
@@ -56,6 +61,7 @@ def Main():
 
     print("\nChecking float numbers:")
     print(to_json(10213.2131))
+    print(json.dumps(10213.2131))
 
     print("\nChecking tuple in dictionary:")
     print(to_json({"name": "Viktor", "age": 30, "sex": ("not_men", "not_women")}))
