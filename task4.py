@@ -33,12 +33,6 @@ def func(arg):
 
 
 
-print(func(1,2,3, Hi = 100, Me = 200))  # позиционные аргументы
-print(func(1,2))
-print(func('Hi'))
-
-#print(dic.items()) # dict_items([('name', 'Nikita'), ('age', 19)])
-#print(dic['name']) # Nikita
-#print(dic.keys())  # dict_keys(['name', 'age'])
-#for wrd in dic.keys(): # Nikita , 19
-#    print(dic[wrd])
+func(1,2,3, Hi = 100, Me = 200)  # позиционные аргументы
+func(1,2)
+func('Hi')
