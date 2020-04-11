@@ -29,17 +29,18 @@ def to_json(data):
 
     elif isinstance(data,list):
         return '"{}"'.format(data)
+
     elif isinstance(data,(float,int)):
-        return str(data)
+        if data == True:
+            return 'true'
+        elif data == False:
+            return 'false'
+        else:
+            return str(data)
+
     elif isinstance(data,str):
         return '"{}"'.format(str(data))
 
-    elif isinstance(data,bool):
-        return data
-    elif data == True:
-        return "true"
-    elif data== False:
-        return "false"
     elif data== None:
         return "null"
     else:
@@ -67,6 +68,13 @@ def Main():
     print(to_json({"name": "Viktor", "age": 30, "sex": ("not_men", "not_women")}))
     print(json.dumps({"name": "Viktor", "age": 30, "sex": ("not_men", "not_women")}))
 
+    a= True
+    b= False
+    print(to_json(a))
+    print(json.dumps(a))
+
+    print(to_json(b))
+    print(json.dumps(b))
 
 
 Main()
