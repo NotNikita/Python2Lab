@@ -19,7 +19,7 @@ class ToJsonTest(unittest.TestCase):
         self.assertEqual(tojson.to_json(var_string), json.dumps(var_string))
         self.assertEqual(tojson.to_json(var_float), json.dumps(var_float))
         self.assertEqual(tojson.to_json(var_tuple_in_dict), json.dumps(var_tuple_in_dict))
-        self.assertEqual(tojson.to_json(var_bool), 'False')
+        self.assertEqual(tojson.to_json(var_bool), json.dumps(var_bool))
         self.assertEqual(tojson.to_json(var_none), json.dumps(var_none))
 
 
