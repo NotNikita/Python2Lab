@@ -9,7 +9,7 @@ def cached(function):
         # result - output
         key = args
         if kwargs:
-            for item in kwargs.items():
+            for item in sorted(kwargs.items()): #sorted оебспечивает устойчивость
                 key += item
 
         # ==
